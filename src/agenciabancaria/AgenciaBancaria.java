@@ -8,5 +8,6 @@ public class AgenciaBancaria {
         System.out.println("Teste 3");
         System.out.println("Teste 4");
         System.out.println("Teste 5");
+        System.out.println("Teste 6");
     }
 }
