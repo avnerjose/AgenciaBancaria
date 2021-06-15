@@ -1,5 +1,7 @@
 package agenciabancaria;
 
-public class Conta {
+public abstract class Conta {
 
+    private long numero;
+    private double saldo;
 }
