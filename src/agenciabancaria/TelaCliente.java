@@ -16,6 +16,7 @@ public class TelaCliente extends javax.swing.JFrame {
      */
     public TelaCliente() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
