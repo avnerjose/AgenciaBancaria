@@ -16,6 +16,7 @@ public class TelaContaPoupanca extends javax.swing.JFrame {
      */
     public TelaContaPoupanca() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

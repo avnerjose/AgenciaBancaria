@@ -16,6 +16,7 @@ public class TelaEndereco extends javax.swing.JFrame {
      */
     public TelaEndereco() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

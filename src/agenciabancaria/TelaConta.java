@@ -16,6 +16,7 @@ public class TelaConta extends javax.swing.JFrame {
      */
     public TelaConta() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**

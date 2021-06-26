@@ -16,6 +16,7 @@ public class TelaContaMovimento extends javax.swing.JFrame {
      */
     public TelaContaMovimento() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
