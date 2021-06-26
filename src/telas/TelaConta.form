@@ -59,8 +59,8 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace pref="40" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="1" attributes="0">
-                      <Component id="jButton3" min="-2" pref="532" max="-2" attributes="0"/>
-                      <Component id="jButton1" min="-2" pref="532" max="-2" attributes="0"/>
+                      <Component id="botaoContaPoupanca" min="-2" pref="532" max="-2" attributes="0"/>
+                      <Component id="botaoContaMovimento" min="-2" pref="532" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
               </Group>
@@ -70,16 +70,16 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="134" max="-2" attributes="0"/>
-                  <Component id="jButton3" min="-2" pref="55" max="-2" attributes="0"/>
+                  <Component id="botaoContaPoupanca" min="-2" pref="55" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="56" max="-2" attributes="0"/>
-                  <Component id="jButton1" min="-2" pref="55" max="-2" attributes="0"/>
+                  <Component id="botaoContaMovimento" min="-2" pref="55" max="-2" attributes="0"/>
                   <EmptySpace pref="182" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JButton" name="jButton1">
+        <Component class="javax.swing.JButton" name="botaoContaMovimento">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="0" red="99" type="rgb"/>
@@ -93,10 +93,10 @@
             <Property name="text" type="java.lang.String" value="CADASTRAR CONTA MOVIMENTO"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoContaMovimentoActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="jButton3">
+        <Component class="javax.swing.JButton" name="botaoContaPoupanca">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="99" green="0" red="99" type="rgb"/>
@@ -110,7 +110,7 @@
             <Property name="text" type="java.lang.String" value="CADASTRAR CONTA POUPAN&#xc7;A"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton3ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="botaoContaPoupancaActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

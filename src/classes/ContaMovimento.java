@@ -1,4 +1,4 @@
-package agenciabancaria;
+package classes;
 
 public class ContaMovimento extends Conta {
 
