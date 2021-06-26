@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package agenciabancaria;
+package telas;
 
 /**
  *
@@ -29,31 +29,31 @@ public class TelaConta extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        botaoContaMovimento = new javax.swing.JButton();
+        botaoContaPoupanca = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 0, 153), 2, true), "Cadastro conta", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 18), new java.awt.Color(153, 0, 153))); // NOI18N
 
-        jButton1.setBackground(new java.awt.Color(153, 0, 153));
-        jButton1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("CADASTRAR CONTA MOVIMENTO");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        botaoContaMovimento.setBackground(new java.awt.Color(153, 0, 153));
+        botaoContaMovimento.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        botaoContaMovimento.setForeground(new java.awt.Color(255, 255, 255));
+        botaoContaMovimento.setText("CADASTRAR CONTA MOVIMENTO");
+        botaoContaMovimento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                botaoContaMovimentoActionPerformed(evt);
             }
         });
 
-        jButton3.setBackground(new java.awt.Color(153, 0, 153));
-        jButton3.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton3.setForeground(new java.awt.Color(255, 255, 255));
-        jButton3.setText("CADASTRAR CONTA POUPANÇA");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        botaoContaPoupanca.setBackground(new java.awt.Color(153, 0, 153));
+        botaoContaPoupanca.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
+        botaoContaPoupanca.setForeground(new java.awt.Color(255, 255, 255));
+        botaoContaPoupanca.setText("CADASTRAR CONTA POUPANÇA");
+        botaoContaPoupanca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                botaoContaPoupancaActionPerformed(evt);
             }
         });
 
@@ -64,17 +64,17 @@ public class TelaConta extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(40, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botaoContaPoupanca, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(botaoContaMovimento, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(35, 35, 35))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(134, 134, 134)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botaoContaPoupanca, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(56, 56, 56)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(botaoContaMovimento, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(182, Short.MAX_VALUE))
         );
 
@@ -92,13 +92,17 @@ public class TelaConta extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void botaoContaMovimentoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoContaMovimentoActionPerformed
+        TelaContaMovimento t1 = new TelaContaMovimento();
+        t1.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_botaoContaMovimentoActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void botaoContaPoupancaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botaoContaPoupancaActionPerformed
+        TelaContaPoupanca t1 = new TelaContaPoupanca();
+        t1.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_botaoContaPoupancaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -151,8 +155,8 @@ public class TelaConta extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton3;
+    private javax.swing.JButton botaoContaMovimento;
+    private javax.swing.JButton botaoContaPoupanca;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

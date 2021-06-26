@@ -1,4 +1,4 @@
-package agenciabancaria;
+package classes;
 
 public class Emprestimo {
     private int numero; //Numero de identificação do empréstimo pela agência

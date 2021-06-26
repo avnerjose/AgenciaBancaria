@@ -1,4 +1,4 @@
-package agenciabancaria;
+package classes;
 
 public abstract class Conta {
 
