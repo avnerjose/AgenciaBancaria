@@ -30,8 +30,8 @@ public class TelaMenu extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         bConta = new javax.swing.JButton();
-        bConta1 = new javax.swing.JButton();
-        bConta2 = new javax.swing.JButton();
+        bCliente = new javax.swing.JButton();
+        bEmprestimo = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -48,23 +48,23 @@ public class TelaMenu extends javax.swing.JFrame {
             }
         });
 
-        bConta1.setBackground(new java.awt.Color(102, 0, 102));
-        bConta1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        bConta1.setForeground(new java.awt.Color(255, 255, 255));
-        bConta1.setText("Cadastrar Novo Cliente");
-        bConta1.addActionListener(new java.awt.event.ActionListener() {
+        bCliente.setBackground(new java.awt.Color(102, 0, 102));
+        bCliente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        bCliente.setForeground(new java.awt.Color(255, 255, 255));
+        bCliente.setText("Cadastrar Novo Cliente");
+        bCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bConta1ActionPerformed(evt);
+                bClienteActionPerformed(evt);
             }
         });
 
-        bConta2.setBackground(new java.awt.Color(102, 0, 102));
-        bConta2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        bConta2.setForeground(new java.awt.Color(255, 255, 255));
-        bConta2.setText("Cadastrar Novo Emprestimo");
-        bConta2.addActionListener(new java.awt.event.ActionListener() {
+        bEmprestimo.setBackground(new java.awt.Color(102, 0, 102));
+        bEmprestimo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        bEmprestimo.setForeground(new java.awt.Color(255, 255, 255));
+        bEmprestimo.setText("Cadastrar Novo Emprestimo");
+        bEmprestimo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                bConta2ActionPerformed(evt);
+                bEmprestimoActionPerformed(evt);
             }
         });
 
@@ -75,8 +75,8 @@ public class TelaMenu extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(bConta2, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bConta1, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bConta, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
@@ -86,9 +86,9 @@ public class TelaMenu extends javax.swing.JFrame {
                 .addGap(68, 68, 68)
                 .addComponent(bConta, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
-                .addComponent(bConta1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(bCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
-                .addComponent(bConta2, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(bEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(125, Short.MAX_VALUE))
         );
 
@@ -115,15 +115,15 @@ public class TelaMenu extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_bContaActionPerformed
 
-    private void bConta1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bConta1ActionPerformed
+    private void bClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bClienteActionPerformed
         TelaCliente t1 = new TelaCliente();
         t1.setVisible(true);
         this.setVisible(false);
-    }//GEN-LAST:event_bConta1ActionPerformed
+    }//GEN-LAST:event_bClienteActionPerformed
 
-    private void bConta2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bConta2ActionPerformed
+    private void bEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEmprestimoActionPerformed
         
-    }//GEN-LAST:event_bConta2ActionPerformed
+    }//GEN-LAST:event_bEmprestimoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -161,9 +161,9 @@ public class TelaMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton bCliente;
     private javax.swing.JButton bConta;
-    private javax.swing.JButton bConta1;
-    private javax.swing.JButton bConta2;
+    private javax.swing.JButton bEmprestimo;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }

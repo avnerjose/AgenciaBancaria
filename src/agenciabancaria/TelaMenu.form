@@ -63,8 +63,8 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="bConta2" min="-2" pref="532" max="-2" attributes="0"/>
-                      <Component id="bConta1" min="-2" pref="532" max="-2" attributes="0"/>
+                      <Component id="bEmprestimo" min="-2" pref="532" max="-2" attributes="0"/>
+                      <Component id="bCliente" min="-2" pref="532" max="-2" attributes="0"/>
                       <Component id="bConta" min="-2" pref="532" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="28" max="32767" attributes="0"/>
@@ -77,9 +77,9 @@
                   <EmptySpace min="-2" pref="68" max="-2" attributes="0"/>
                   <Component id="bConta" min="-2" pref="55" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                  <Component id="bConta1" min="-2" pref="55" max="-2" attributes="0"/>
+                  <Component id="bCliente" min="-2" pref="55" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
-                  <Component id="bConta2" min="-2" pref="55" max="-2" attributes="0"/>
+                  <Component id="bEmprestimo" min="-2" pref="55" max="-2" attributes="0"/>
                   <EmptySpace pref="125" max="32767" attributes="0"/>
               </Group>
           </Group>
@@ -103,7 +103,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bContaActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="bConta1">
+        <Component class="javax.swing.JButton" name="bCliente">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="0" red="66" type="rgb"/>
@@ -117,10 +117,10 @@
             <Property name="text" type="java.lang.String" value="Cadastrar Novo Cliente"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bConta1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bClienteActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="bConta2">
+        <Component class="javax.swing.JButton" name="bEmprestimo">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="66" green="0" red="66" type="rgb"/>
@@ -134,7 +134,7 @@
             <Property name="text" type="java.lang.String" value="Cadastrar Novo Emprestimo"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bConta2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="bEmprestimoActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
