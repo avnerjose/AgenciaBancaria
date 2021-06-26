@@ -122,7 +122,9 @@ public class TelaMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_bClienteActionPerformed
 
     private void bEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEmprestimoActionPerformed
-        
+        TelaEmprestimo t1 = new TelaEmprestimo();
+        t1.setVisible(true);
+        this.setVisible(false);
     }//GEN-LAST:event_bEmprestimoActionPerformed
 
     /**
