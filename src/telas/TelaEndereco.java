@@ -8,6 +8,7 @@ package telas;
 import classes.Cliente;
 import classes.Endereco;
 import conexao.DAO.EnderecoDAO;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -257,15 +258,36 @@ public class TelaEndereco extends javax.swing.JFrame {
         Endereco e1 = new Endereco();
         if(!tfBairro.getText().equals("") && !tfCEP.getText().equals("") && !tfCidade.getText().equals("")
            && !tfNumero.getText().equals("") && !tfRua.getText().equals("")) {
-          e1.setCidade(tfCidade.getText());
-          e1.setBairro(tfBairro.getText());
-          e1.setRua(tfRua.getText());
-          e1.setNumero(Integer.parseInt(tfNumero.getText()));
-          e1.setCep(tfCEP.getText());
-          e1.setCpf(Cliente.getCpf());
+            try {
+                e1.setCidade(tfCidade.getText());
+                e1.setBairro(tfBairro.getText());
+                e1.setRua(tfRua.getText());
+                e1.setNumero(Integer.parseInt(tfNumero.getText()));
+                e1.setCep(tfCEP.getText());
+                e1.setCpf(Cliente.getCpf());
           
-          EnderecoDAO ed1 = new EnderecoDAO();
-          ed1.inserirEndereco(e1);
+                EnderecoDAO ed1 = new EnderecoDAO();
+                if(ed1.inserirEndereco(e1)) {
+                    JOptionPane.showMessageDialog(null, "Endereco cadastrado com sucesso!");
+                    TelaMenu menu = new TelaMenu();
+                    menu.setVisible(true);
+                    this.setVisible(false);
+                } else {
+                    limpar();
+                    JOptionPane.showMessageDialog(null, "Endereco não pode ser inserido!");
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Valores digitados são incorretos!");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
         }
+    }
+    public void limpar() {
+        tfBairro.setText("");
+        tfCEP.setText("");
+        tfCidade.setText("");
+        tfNumero.setText("");
+        tfRua.setText("");
     }
 }
