@@ -5,6 +5,10 @@
  */
 package telas;
 
+import classes.ContaMovimento;
+import conexao.DAO.ContaMovimentoDAO;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author avnerjose
@@ -31,10 +35,10 @@ public class TelaContaMovimento extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jTextField2 = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jTextField9 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
+        tfNumero = new javax.swing.JTextField();
+        btnCadastrarCM = new javax.swing.JButton();
+        tfLimite = new javax.swing.JTextField();
+        tfSaldo = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -50,33 +54,33 @@ public class TelaContaMovimento extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("Limite:");
 
-        jTextField2.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+        tfNumero.setBackground(new java.awt.Color(255, 255, 255));
+        tfNumero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField2ActionPerformed(evt);
+                tfNumeroActionPerformed(evt);
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(153, 0, 153));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("CADASTRAR");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnCadastrarCM.setBackground(new java.awt.Color(153, 0, 153));
+        btnCadastrarCM.setForeground(new java.awt.Color(255, 255, 255));
+        btnCadastrarCM.setText("CADASTRAR");
+        btnCadastrarCM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnCadastrarCMActionPerformed(evt);
             }
         });
 
-        jTextField9.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField9.addActionListener(new java.awt.event.ActionListener() {
+        tfLimite.setBackground(new java.awt.Color(255, 255, 255));
+        tfLimite.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField9ActionPerformed(evt);
+                tfLimiteActionPerformed(evt);
             }
         });
 
-        jTextField3.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField3.addActionListener(new java.awt.event.ActionListener() {
+        tfSaldo.setBackground(new java.awt.Color(255, 255, 255));
+        tfSaldo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jTextField3ActionPerformed(evt);
+                tfSaldoActionPerformed(evt);
             }
         });
 
@@ -94,17 +98,17 @@ public class TelaContaMovimento extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addGap(18, 18, 18)
-                        .addComponent(jTextField2))
+                        .addComponent(tfNumero))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(37, 37, 37)
-                        .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(tfSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3)
                         .addGap(33, 33, 33)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addComponent(btnCadastrarCM, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(tfLimite, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 429, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(57, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -113,18 +117,18 @@ public class TelaContaMovimento extends javax.swing.JFrame {
                 .addGap(105, 105, 105)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfNumero, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(32, 32, 32)
+                    .addComponent(tfSaldo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(jTextField9, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(tfLimite, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 17, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(36, 36, 36)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(144, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addComponent(btnCadastrarCM, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(168, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -141,21 +145,44 @@ public class TelaContaMovimento extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jTextField9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField9ActionPerformed
+    private void tfLimiteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfLimiteActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField9ActionPerformed
+    }//GEN-LAST:event_tfLimiteActionPerformed
 
-    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+    private void tfNumeroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfNumeroActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField2ActionPerformed
+    }//GEN-LAST:event_tfNumeroActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnCadastrarCMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarCMActionPerformed
+        ContaMovimento conta = new ContaMovimento();
+        
+        if (!tfNumero.getText().equals("") && !tfLimite.getText().equals("") && !tfSaldo.getText().equals("")) {
+            try {
+                conta.setNumero(Integer.parseInt(tfNumero.getText()));
+                conta.setLimite(Float.parseFloat(tfLimite.getText()));
+                conta.setSaldo(Float.parseFloat(tfSaldo.getText()));
+                
+                ContaMovimentoDAO cConnection = new ContaMovimentoDAO();
+                if (cConnection.inserirContaMovimento(conta)) {
+                    JOptionPane.showMessageDialog(null, "Conta criada com sucesso!");
+                    TelaMenu menu = new TelaMenu();
+                    menu.setVisible(true);
+                    this.setVisible(false);
+                } else {
+                    limpar();
+                    JOptionPane.showMessageDialog(null, "Conta não pôde ser inserida!");
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Valores digitados são incorretos!");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+        }
+    }//GEN-LAST:event_btnCadastrarCMActionPerformed
 
-    private void jTextField3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField3ActionPerformed
+    private void tfSaldoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tfSaldoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jTextField3ActionPerformed
+    }//GEN-LAST:event_tfSaldoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -200,13 +227,19 @@ public class TelaContaMovimento extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
+    private javax.swing.JButton btnCadastrarCM;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField9;
+    private javax.swing.JTextField tfLimite;
+    private javax.swing.JTextField tfNumero;
+    private javax.swing.JTextField tfSaldo;
     // End of variables declaration//GEN-END:variables
+
+    public void limpar() {
+        tfLimite.setText("");
+        tfNumero.setText("");
+        tfSaldo.setText("");
+    }
 }
