@@ -5,6 +5,10 @@
  */
 package telas;
 
+import classes.Cliente;
+import classes.Endereco;
+import conexao.DAO.ClienteDAO;
+
 /**
  *
  * @author Fabio
@@ -84,6 +88,11 @@ public class TelaCliente extends javax.swing.JFrame {
         bCadastrar.setBackground(new java.awt.Color(102, 0, 102));
         bCadastrar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         bCadastrar.setText("Cadastrar");
+        bCadastrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bCadastrarActionPerformed(evt);
+            }
+        });
 
         cbConta.setBackground(new java.awt.Color(255, 255, 255));
         cbConta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -161,6 +170,10 @@ public class TelaCliente extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tfEmailActionPerformed
 
+    private void bCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCadastrarActionPerformed
+        cadastrar();
+    }//GEN-LAST:event_bCadastrarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -208,4 +221,18 @@ public class TelaCliente extends javax.swing.JFrame {
     private javax.swing.JTextField tfEmail;
     private javax.swing.JTextField tfNome;
     // End of variables declaration//GEN-END:variables
+    public void cadastrar() {
+        Cliente c1 = new Cliente();
+        if(!tfNome.getText().equals("") && !tfEmail.getText().equals("") && !tfCPF.getText().equals("")) {
+          c1.setNome(tfNome.getText());
+          c1.setEmail(tfEmail.getText());
+          Cliente.setCpf(tfCPF.getText());
+          ClienteDAO cd1 = new ClienteDAO();
+          cd1.inserirCliente(c1);
+          
+          TelaEndereco te1 = new TelaEndereco();
+          te1.setVisible(true);
+          this.setVisible(false);
+        } 
+    }
 }
