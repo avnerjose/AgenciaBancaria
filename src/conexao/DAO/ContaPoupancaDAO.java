@@ -9,7 +9,7 @@ public class ContaPoupancaDAO extends connectionDAO {
 
     boolean sucesso = false;
 
-    public boolean inserirContaMovimento(ContaPoupanca conta) {
+    public boolean inserirContaPoupanca(ContaPoupanca conta) {
         connectToDB();
         String sql = "INSERT INTO Conta_Poupanca (numero, saldo, rendimento, Agencia_numero) values(?,?,?,?)";
         try {
@@ -17,7 +17,7 @@ public class ContaPoupancaDAO extends connectionDAO {
             pst.setInt(1, conta.getNumero());
             pst.setFloat(2, conta.getSaldo());
             pst.setFloat(3, conta.getRendimento());
-            pst.setString(4, "101");
+            pst.setString(4, "8922");
             pst.execute();
             sucesso = true;
         } catch (SQLException exc) {
@@ -35,7 +35,7 @@ public class ContaPoupancaDAO extends connectionDAO {
         return sucesso;
     }
 
-    public boolean atualizarFilme(int numero, ContaPoupanca conta) {
+    public boolean atualizarContaPoupanca(int numero, ContaPoupanca conta) {
         connectToDB();
         String sql = "UPDATE Conta_Movimento SET saldo=?, rendimento=? where numero=?";
 
@@ -61,7 +61,7 @@ public class ContaPoupancaDAO extends connectionDAO {
         return sucesso;
     }
 
-    public boolean deletarFilme(int numero) {
+    public boolean deletarPoupanca(int numero) {
         connectToDB();
         String sql = "DELETE FROM Conta_Poupanca where numero=?";
 
@@ -85,17 +85,16 @@ public class ContaPoupancaDAO extends connectionDAO {
         return sucesso;
     }
 
-    public ArrayList<Conta> buscarContasMovimento() {
-        ArrayList<Conta> listaDeContasMovimento = new ArrayList<>();
+    public ArrayList<Conta> buscarContasPoupanca() {
+        ArrayList<Conta> listaDeContasPoupanca = new ArrayList<>();
 
         connectToDB();
 
-        String sql = "SELECT * FROM Conta_Movimento";
+        String sql = "SELECT * FROM Conta_Poupanca";
 
         try {
             st = con.createStatement();
             rs = st.executeQuery(sql);
-            System.out.println("Lista de filmes");
             while (rs.next()) {
                 ContaPoupanca contaAux = new ContaPoupanca();
 
@@ -103,7 +102,7 @@ public class ContaPoupancaDAO extends connectionDAO {
                 contaAux.setSaldo(rs.getFloat("saldo"));
                 contaAux.setRendimento(rs.getFloat("rendimento"));
 
-                listaDeContasMovimento.add(contaAux);
+                listaDeContasPoupanca.add(contaAux);
             }
         } catch (SQLException e) {
             System.out.println("Erro: " + e.getMessage());
@@ -116,7 +115,7 @@ public class ContaPoupancaDAO extends connectionDAO {
             }
         }
 
-        return listaDeContasMovimento;
+        return listaDeContasPoupanca;
     }
 
 }

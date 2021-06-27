@@ -158,7 +158,7 @@ public class TelaContaPoupanca extends javax.swing.JFrame {
                 conta.setSaldo(Float.parseFloat(tfSaldo.getText()));
 
                 ContaPoupancaDAO cConnection = new ContaPoupancaDAO();
-                if (cConnection.inserirContaMovimento(conta)) {
+                if (cConnection.inserirContaPoupanca(conta)) {
                     JOptionPane.showMessageDialog(null, "Conta criada com sucesso!");
                     TelaMenu menu = new TelaMenu();
                     menu.setVisible(true);
