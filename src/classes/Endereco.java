@@ -55,6 +55,7 @@ public class Endereco {
     public void setCpf(String cpf) {
         this.cpf = cpf;
     }
+
     
     
 }
