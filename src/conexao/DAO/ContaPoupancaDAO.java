@@ -11,7 +11,7 @@ public class ContaPoupancaDAO extends connectionDAO {
 
     public boolean inserirContaMovimento(ContaPoupanca conta) {
         connectToDB();
-        String sql = "INSERT INTO Conta_Movimento (numero, saldo, rendimento, Agencia_numero) values(?,?,?,?)";
+        String sql = "INSERT INTO Conta_Poupanca (numero, saldo, rendimento, Agencia_numero) values(?,?,?,?)";
         try {
             pst = con.prepareStatement(sql);
             pst.setInt(1, conta.getNumero());
