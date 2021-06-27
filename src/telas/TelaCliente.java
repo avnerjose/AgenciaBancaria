@@ -7,11 +7,14 @@ package telas;
 
 import classes.Cliente;
 import classes.Conta;
+import classes.ContaMovimento;
+import classes.ContaPoupanca;
 import classes.Endereco;
 import conexao.DAO.ClienteDAO;
 import conexao.DAO.ContaMovimentoDAO;
 import conexao.DAO.ContaPoupancaDAO;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -237,32 +240,76 @@ public class TelaCliente extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     public void cadastrar() {
         Cliente c1 = new Cliente();
-        if(!tfNome.getText().equals("") && !tfEmail.getText().equals("") && !tfCPF.getText().equals("")) {
-          c1.setNome(tfNome.getText());
-          c1.setEmail(tfEmail.getText());
-          Cliente.setCpf(tfCPF.getText());
-          ClienteDAO cd1 = new ClienteDAO();
-          cd1.inserirCliente(c1);
-          
-          TelaEndereco te1 = new TelaEndereco();
-          te1.setVisible(true);
-          this.setVisible(false);
-        } 
+        if (!tfNome.getText().equals("") && !tfEmail.getText().equals("") && !tfCPF.getText().equals("")) {
+
+            try {
+                c1.setNome(tfNome.getText());
+                c1.setEmail(tfEmail.getText());
+                Cliente.setCpf(tfCPF.getText());
+                ClienteDAO cd1 = new ClienteDAO();
+
+                String[] partes = cbConta.getSelectedItem().toString().split(" ");
+
+                if (cd1.inserirCliente(c1)) {
+
+                    if (partes[0].equals("Poupança")) {
+                        ContaPoupancaDAO cpd1 = new ContaPoupancaDAO();
+                        ContaPoupanca conta = cpd1.buscarContaPoupancaPorNumero(Integer.parseInt(partes[3]));
+                        conta.setCliente_cpf(tfCPF.getText());
+                        cpd1.atualizarContaPoupanca(Integer.parseInt(partes[3]), conta);
+                    } else if (partes[0].equals("Movimento")) {
+                        ContaMovimentoDAO cmd1 = new ContaMovimentoDAO();
+                        ContaMovimento conta = cmd1.buscarContaMovimentoPorNumero(Integer.parseInt(partes[3]));
+                        conta.setCliente_cpf(tfCPF.getText());
+                        cmd1.atulizarContaMovimento(Integer.parseInt(partes[3]), conta);
+                    }
+
+                    TelaEndereco te1 = new TelaEndereco();
+                    te1.setVisible(true);
+                    this.setVisible(false);
+                } else {
+                    limpar();
+                    JOptionPane.showMessageDialog(null, "Cliente não pôde ser criado!");
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Valores digitados são incorretos!");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+        }
     }
+
     public void comboBoxLista() {
         ContaPoupancaDAO cpd1 = new ContaPoupancaDAO();
         ContaMovimentoDAO cmd1 = new ContaMovimentoDAO();
         ArrayList<Conta> contasPoupanca = new ArrayList();
         ArrayList<Conta> contasMovimento = new ArrayList();
         ArrayList<Conta> contas = new ArrayList();
-        
+
         contasPoupanca = cpd1.buscarContasPoupanca();
         contasMovimento = cmd1.buscarContasMovimento();
         contas.addAll(contasPoupanca);
         contas.addAll(contasMovimento);
-        
+
         for (Conta conta : contas) {
-            cbConta.addItem(Integer.toString(conta.getNumero()));
+
+            if (conta instanceof ContaPoupanca) {
+                ContaPoupanca aux = (ContaPoupanca) conta;
+                if (aux.getCliente_cpf() == null) {
+                    cbConta.addItem("Poupança - N° " + Integer.toString(aux.getNumero()) + " - Rendimento: " + Float.toString(aux.getRendimento()));
+                }
+            } else if (conta instanceof ContaMovimento) {
+                ContaMovimento aux = (ContaMovimento) conta;
+                if (aux.getCliente_cpf() == null) {
+                    cbConta.addItem("Movimento - N° " + Integer.toString(aux.getNumero()) + " - Limite: " + Float.toString(aux.getLimite()));
+                }
+            }
         }
+    }
+
+    public void limpar() {
+        tfCPF.setText("");
+        tfEmail.setText("");
+        tfNome.setText("");
     }
 }
