@@ -6,8 +6,12 @@
 package telas;
 
 import classes.Cliente;
+import classes.Conta;
 import classes.Endereco;
 import conexao.DAO.ClienteDAO;
+import conexao.DAO.ContaMovimentoDAO;
+import conexao.DAO.ContaPoupancaDAO;
+import java.util.ArrayList;
 
 /**
  *
@@ -21,6 +25,7 @@ public class TelaCliente extends javax.swing.JFrame {
     public TelaCliente() {
         initComponents();
         setLocationRelativeTo(null);
+        comboBoxLista();
     }
 
     /**
@@ -96,6 +101,11 @@ public class TelaCliente extends javax.swing.JFrame {
 
         cbConta.setBackground(new java.awt.Color(255, 255, 255));
         cbConta.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cbConta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbContaActionPerformed(evt);
+            }
+        });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jLabel4.setText("Email");
@@ -174,6 +184,10 @@ public class TelaCliente extends javax.swing.JFrame {
         cadastrar();
     }//GEN-LAST:event_bCadastrarActionPerformed
 
+    private void cbContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbContaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbContaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -234,5 +248,21 @@ public class TelaCliente extends javax.swing.JFrame {
           te1.setVisible(true);
           this.setVisible(false);
         } 
+    }
+    public void comboBoxLista() {
+        ContaPoupancaDAO cpd1 = new ContaPoupancaDAO();
+        ContaMovimentoDAO cmd1 = new ContaMovimentoDAO();
+        ArrayList<Conta> contasPoupanca = new ArrayList();
+        ArrayList<Conta> contasMovimento = new ArrayList();
+        ArrayList<Conta> contas = new ArrayList();
+        
+        contasPoupanca = cpd1.buscarContasPoupanca();
+        contasMovimento = cmd1.buscarContasMovimento();
+        contas.addAll(contasPoupanca);
+        contas.addAll(contasMovimento);
+        
+        for (Conta conta : contas) {
+            cbConta.addItem(Integer.toString(conta.getNumero()));
+        }
     }
 }
