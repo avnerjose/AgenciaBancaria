@@ -64,6 +64,7 @@ public class TelaContaPoupanca extends javax.swing.JFrame {
         btnCadastrarCP.setBackground(new java.awt.Color(153, 0, 153));
         btnCadastrarCP.setForeground(new java.awt.Color(255, 255, 255));
         btnCadastrarCP.setText("CADASTRAR");
+        btnCadastrarCP.setFocusable(false);
         btnCadastrarCP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastrarCPActionPerformed(evt);

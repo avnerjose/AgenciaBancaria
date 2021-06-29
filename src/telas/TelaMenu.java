@@ -36,32 +36,35 @@ public class TelaMenu extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 0, 102), 2, true), "Agência Centrium", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 24), new java.awt.Color(102, 0, 102))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 0, 153), 2, true), "Agência Centrium", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 24), new java.awt.Color(153, 0, 153))); // NOI18N
 
-        bConta.setBackground(new java.awt.Color(102, 0, 102));
+        bConta.setBackground(new java.awt.Color(153, 0, 153));
         bConta.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         bConta.setForeground(new java.awt.Color(255, 255, 255));
         bConta.setText("Cadastrar Nova Conta");
+        bConta.setFocusable(false);
         bConta.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bContaActionPerformed(evt);
             }
         });
 
-        bCliente.setBackground(new java.awt.Color(102, 0, 102));
+        bCliente.setBackground(new java.awt.Color(153, 0, 153));
         bCliente.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         bCliente.setForeground(new java.awt.Color(255, 255, 255));
         bCliente.setText("Cadastrar Novo Cliente");
+        bCliente.setFocusable(false);
         bCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bClienteActionPerformed(evt);
             }
         });
 
-        bEmprestimo.setBackground(new java.awt.Color(102, 0, 102));
+        bEmprestimo.setBackground(new java.awt.Color(153, 0, 153));
         bEmprestimo.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         bEmprestimo.setForeground(new java.awt.Color(255, 255, 255));
         bEmprestimo.setText("Cadastrar Novo Emprestimo");
+        bEmprestimo.setFocusable(false);
         bEmprestimo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bEmprestimoActionPerformed(evt);
@@ -82,14 +85,14 @@ public class TelaMenu extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(68, 68, 68)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addContainerGap(99, Short.MAX_VALUE)
                 .addComponent(bConta, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
                 .addComponent(bCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
                 .addComponent(bEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(125, Short.MAX_VALUE))
+                .addGap(94, 94, 94))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());

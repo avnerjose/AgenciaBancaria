@@ -41,6 +41,7 @@ public class TelaConta extends javax.swing.JFrame {
         botaoContaMovimento.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         botaoContaMovimento.setForeground(new java.awt.Color(255, 255, 255));
         botaoContaMovimento.setText("CADASTRAR CONTA MOVIMENTO");
+        botaoContaMovimento.setFocusable(false);
         botaoContaMovimento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoContaMovimentoActionPerformed(evt);
@@ -51,6 +52,7 @@ public class TelaConta extends javax.swing.JFrame {
         botaoContaPoupanca.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         botaoContaPoupanca.setForeground(new java.awt.Color(255, 255, 255));
         botaoContaPoupanca.setText("CADASTRAR CONTA POUPANÇA");
+        botaoContaPoupanca.setFocusable(false);
         botaoContaPoupanca.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botaoContaPoupancaActionPerformed(evt);
