@@ -9,7 +9,6 @@ import classes.Cliente;
 import classes.Conta;
 import classes.ContaMovimento;
 import classes.ContaPoupanca;
-import classes.Endereco;
 import conexao.DAO.ClienteDAO;
 import conexao.DAO.ContaMovimentoDAO;
 import conexao.DAO.ContaPoupancaDAO;

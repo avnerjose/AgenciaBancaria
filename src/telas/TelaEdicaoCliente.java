@@ -13,6 +13,7 @@ import conexao.DAO.ClienteDAO;
 import conexao.DAO.ContaMovimentoDAO;
 import conexao.DAO.ContaPoupancaDAO;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -240,7 +241,7 @@ public class TelaEdicaoCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_tfEmailActionPerformed
 
     private void bCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCadastrarActionPerformed
-
+        alteraDadosCliente();
     }//GEN-LAST:event_bCadastrarActionPerformed
 
     private void cbContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbContaActionPerformed
@@ -248,7 +249,7 @@ public class TelaEdicaoCliente extends javax.swing.JFrame {
     }//GEN-LAST:event_cbContaActionPerformed
 
     private void bCadastrar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCadastrar1ActionPerformed
-        // TODO add your handling code here:
+        deletaCliente();
     }//GEN-LAST:event_bCadastrar1ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -309,30 +310,30 @@ public class TelaEdicaoCliente extends javax.swing.JFrame {
     // End of variables declaration//GEN-END:variables
     public void comboBoxCliente() {
         ClienteDAO cd1 = new ClienteDAO();
-        
+
         ArrayList<Cliente> clientes = cd1.buscarClienteSemFiltro();
-        
+
         for (Cliente cliente : clientes) {
             cbClientes.addItem("Nome: " + cliente.getNome() + " - CPF: " + cliente.getCpf());
             System.out.println(cliente.getCpf());
         }
-        
+
     }
-    
+
     public void comboBoxLista() {
         ContaPoupancaDAO cpd1 = new ContaPoupancaDAO();
         ContaMovimentoDAO cmd1 = new ContaMovimentoDAO();
         ArrayList<Conta> contasPoupanca = new ArrayList();
         ArrayList<Conta> contasMovimento = new ArrayList();
         ArrayList<Conta> contas = new ArrayList();
-        
+
         contasPoupanca = cpd1.buscarContasPoupanca();
         contasMovimento = cmd1.buscarContasMovimento();
         contas.addAll(contasPoupanca);
         contas.addAll(contasMovimento);
-        
+
         for (Conta conta : contas) {
-            
+
             if (conta instanceof ContaPoupanca) {
                 ContaPoupanca aux = (ContaPoupanca) conta;
                 if (aux.getCliente_cpf() == null) {
@@ -346,18 +347,69 @@ public class TelaEdicaoCliente extends javax.swing.JFrame {
             }
         }
     }
-    
+
     public void carregaDadosCliente() {
         ClienteDAO cd1 = new ClienteDAO();
         String clienteCPF = cbClientes.getSelectedItem().toString().split(" ")[4];
-        
+
         Cliente c1 = cd1.buscarClientePorCpf(clienteCPF);
-        
+
         tfNome.setText(c1.getNome());
         tfEmail.setText(c1.getEmail());
         tfCPF.setText(c1.getCpf());
     }
-    
+
+    public void alteraDadosCliente() {
+        Cliente c1 = new Cliente();
+        if (!tfNome.getText().equals("") && !tfEmail.getText().equals("") && !tfCPF.getText().equals("")) {
+
+            try {
+                c1.setNome(tfNome.getText());
+                c1.setEmail(tfEmail.getText());
+                c1.setCpf(tfCPF.getText());
+                ClienteDAO cd1 = new ClienteDAO();
+                String clienteCPF = cbClientes.getSelectedItem().toString().split(" ")[4];
+
+                try {
+                    String[] partes = cbConta.getSelectedItem().toString().split(" ");
+                } catch (Exception e) {
+                    System.out.println("Nenhuma conta disponível!");
+                }
+
+                if (cd1.atualizarCliente(clienteCPF, c1)) {
+                    JOptionPane.showMessageDialog(null, "Cliente alterado com sucesso!");
+                    TelaMenu tm = new TelaMenu();
+                    tm.setVisible(true);
+                    this.setVisible(false);
+                } else {
+                    limpar();
+                    JOptionPane.showMessageDialog(null, "Cliente não pôde ser criado!");
+                }
+            } catch (Exception e) {
+                System.out.println(e.getMessage());
+                JOptionPane.showMessageDialog(null, "Valores digitados são incorretos!");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Carregue um cliente!");
+        }
+    }
+
+    public void deletaCliente() {
+        ClienteDAO cd1 = new ClienteDAO();
+
+        if (!tfNome.getText().equals("") && !tfEmail.getText().equals("") && !tfCPF.getText().equals("")) {
+
+            if (cd1.deletarCliente(tfCPF.getText())) {
+                JOptionPane.showMessageDialog(null, "Cliente deletado com sucesso!");
+                TelaMenu tm = new TelaMenu();
+                tm.setVisible(true);
+                this.setVisible(false);
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Carregue um cliente!");
+        }
+    }
+
     public void limpar() {
         tfCPF.setText("");
         tfEmail.setText("");
