@@ -17,7 +17,7 @@ public class ContaMovimentoDAO extends connectionDAO {
             pst.setInt(1, conta.getNumero());
             pst.setFloat(2, conta.getSaldo());
             pst.setFloat(3, conta.getLimite());
-            pst.setString(4, "101");
+            pst.setString(4, "8922");
             pst.execute();
             sucesso = true;
         } catch (SQLException exc) {

@@ -42,7 +42,7 @@ public class ClienteDAO extends connectionDAO {
             pst = con.prepareStatement(sql);
             pst.setString(1, cliente.getNome());
             pst.setString(2, cliente.getEmail());
-            pst.setString(3, cliente.getCpf());
+            pst.setString(3, cpf);
             pst.execute();
             sucesso = true;
 
