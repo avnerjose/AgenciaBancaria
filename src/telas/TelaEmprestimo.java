@@ -206,6 +206,8 @@ public class TelaEmprestimo extends javax.swing.JFrame {
                     TelaMenu menu = new TelaMenu();
                     menu.setVisible(true);
                     this.setVisible(false);
+                    String[] partes = cbCPF.getSelectedItem().toString().split(" ");
+                    ed1.emprestimoHasCliente(partes[2]);
                } else {
                    limpar();
                    JOptionPane.showMessageDialog(null, "Emprestimo não pode ser inserido");
@@ -229,7 +231,7 @@ public class TelaEmprestimo extends javax.swing.JFrame {
         clientes = cd1.buscarClienteSemFiltro();
         
         for (Cliente cliente : clientes) {
-            cbCPF.addItem(cliente.getNome());
+            cbCPF.addItem(cliente.getNome() + " - " + cliente.getCpf());
         }
     }
 }

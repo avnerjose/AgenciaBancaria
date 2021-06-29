@@ -35,7 +35,7 @@ public class EmprestimoDAO extends connectionDAO {
                 System.out.println("Erro: " + exc.getMessage());
             }
         }
-        
+       
         return sucesso;
         
     }
@@ -120,5 +120,49 @@ public class EmprestimoDAO extends connectionDAO {
         }
         return listaDeEmprestimos;
     }
-    
+    public boolean emprestimoHasCliente(String cpf) {
+        connectToDB();
+        Emprestimo emprestimoAux = new Emprestimo();
+        String sql = "SELECT max(numero) as numero FROM Emprestimo";
+        
+        try {
+            st = con.createStatement();
+            rs = st.executeQuery(sql);
+            while (rs.next()) {
+                emprestimoAux.setNumero(rs.getInt("numero"));
+            }
+            sucesso = true;
+        } catch(SQLException e) {
+            System.out.println("Erro: " + e.getMessage());
+            sucesso = false;
+        } finally {
+            try {
+                con.close();
+                st.close();
+            } catch(SQLException e) {
+                System.out.println("Erro: " + e.getMessage());
+            }
+        }
+        connectToDB();
+        sql = "INSERT INTO cliente_has_emprestimo (Emprestimo_numero, Cliente_cpf) values(?,?)";
+        try {
+            pst = con.prepareStatement(sql);
+            pst.setInt(1, emprestimoAux.getNumero());
+            pst.setString(2, cpf);
+            pst.execute();
+            sucesso = true;
+        } catch(SQLException exc) {
+            System.out.println("Erro: " + exc.getMessage());
+            sucesso = false;
+        } finally {
+            try {
+                con.close();
+                pst.close();
+            } catch(SQLException exc) {
+                System.out.println("Erro: " + exc.getMessage());
+            }
+        }
+        
+        return sucesso;
+    }
 }
