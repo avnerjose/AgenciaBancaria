@@ -5,7 +5,7 @@
  */
 package conexao.DAO;
 
-import classes.Endereco;
+import classes.Emprestimo;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
@@ -13,20 +13,15 @@ import java.util.ArrayList;
  *
  * @author Fabio
  */
-public class EnderecoDAO extends connectionDAO{
-    boolean sucesso = false;
+public class EmprestimoDAO extends connectionDAO {
+     boolean sucesso = false;
     
-    public boolean inserirEndereco(Endereco endereco) {
+    public boolean inserirEmprestimo(Emprestimo emprestimo) {
         connectToDB();
-        String sql = "INSERT INTO Endereco (cidade, bairro, rua, numero, cep, Cliente_cpf) values(?,?,?,?,?,?)";
+        String sql = "INSERT INTO Emprestimo (valor, Agencia_numero) values(?,8922)";
         try {
             pst = con.prepareStatement(sql);
-            pst.setString(1, endereco.getCidade());
-            pst.setString(2, endereco.getBairro());
-            pst.setString(3, endereco.getRua());
-            pst.setInt(4, endereco.getNumero());
-            pst.setString(5, endereco.getCep());
-            pst.setString(6, endereco.getCpf());
+            pst.setFloat(1, emprestimo.getValor());
             pst.execute();
             sucesso = true;
         } catch(SQLException exc) {
@@ -45,19 +40,14 @@ public class EnderecoDAO extends connectionDAO{
         
     }
     
-    public boolean atualizarEndereco(int idEndereco, Endereco endereco) {
+    public boolean atualizarEmprestimo(int numero, Emprestimo emprestimo) {
       connectToDB();
-        String sql = "UPDATE Endereco SET cidade=?, bairro=?, rua=?, numero=?, cep=?, Cliente_cpf=? where idEndereco=?";
+        String sql = "UPDATE Emprestimo SET valor=?, Agencia_numero=8922 where numero=?";
         
         try {
             pst = con.prepareStatement(sql);
-            pst.setString(1, endereco.getCidade());
-            pst.setString(2, endereco.getBairro());
-            pst.setString(3, endereco.getRua());
-            pst.setInt(4, endereco.getNumero());
-            pst.setString(5, endereco.getCep());
-            pst.setString(6, endereco.getCpf());
-            pst.setInt(7, idEndereco);
+            pst.setFloat(1, emprestimo.getValor());
+            pst.setInt(2, numero);
             pst.execute();
             sucesso = true;
             
@@ -75,13 +65,13 @@ public class EnderecoDAO extends connectionDAO{
         return sucesso;  
     }
     
-    public boolean deletarEndereco(int idEndereco) {
+    public boolean deletarEmprestimo(int numero) {
         connectToDB();
-        String sql = "DELETE FROM Endereco where idEndereco=?";
+        String sql = "DELETE FROM Emprestimo where numero=?";
         
         try {
             pst = con.prepareStatement(sql);
-            pst.setInt(1, idEndereco);
+            pst.setInt(1, numero);
             pst.execute();
             sucesso = true;
             
@@ -99,26 +89,22 @@ public class EnderecoDAO extends connectionDAO{
         return sucesso;
     }
     
-    public ArrayList<Endereco> buscarEnderecoSemFiltro() {
-        ArrayList<Endereco> listaDeEnderecos = new ArrayList<>();
+    public ArrayList<Emprestimo> buscarEmprestimoSemFiltro() {
+        ArrayList<Emprestimo> listaDeEmprestimos = new ArrayList<>();
         
         connectToDB();
         
-        String sql = "SELECT * FROM Endereco";
+        String sql = "SELECT * FROM Emprestimo";
         
         try {
             st = con.createStatement();
             rs = st.executeQuery(sql);
-            System.out.println("Lista de Enderecos dentro do metodo de busca: ");
+            System.out.println("Lista de Emprestimos dentro do metodo de busca: ");
             while (rs.next()) {
-                Endereco enderecoAux = new Endereco();
-                enderecoAux.setCidade(rs.getString("cidade"));
-                enderecoAux.setBairro(rs.getString("bairro"));
-                enderecoAux.setRua(rs.getString("rua"));
-                enderecoAux.setNumero(rs.getInt("numero"));
-                enderecoAux.setCep(rs.getString("cep"));
-                enderecoAux.setCpf(rs.getString("Cliente_Cpf"));
-                listaDeEnderecos.add(enderecoAux);
+                Emprestimo emprestimoAux = new Emprestimo();
+                emprestimoAux.setNumero(rs.getInt("numero"));
+                emprestimoAux.setValor(rs.getFloat("valor"));
+                listaDeEmprestimos.add(emprestimoAux);
             }
             sucesso = true;
         } catch(SQLException e) {
@@ -132,6 +118,7 @@ public class EnderecoDAO extends connectionDAO{
                 System.out.println("Erro: " + e.getMessage());
             }
         }
-        return listaDeEnderecos;
+        return listaDeEmprestimos;
     }
+    
 }
