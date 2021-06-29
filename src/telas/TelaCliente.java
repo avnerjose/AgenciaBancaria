@@ -95,7 +95,9 @@ public class TelaCliente extends javax.swing.JFrame {
 
         bCadastrar.setBackground(new java.awt.Color(102, 0, 102));
         bCadastrar.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        bCadastrar.setForeground(new java.awt.Color(255, 255, 255));
         bCadastrar.setText("Cadastrar");
+        bCadastrar.setFocusable(false);
         bCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 bCadastrarActionPerformed(evt);
@@ -245,31 +247,37 @@ public class TelaCliente extends javax.swing.JFrame {
             try {
                 c1.setNome(tfNome.getText());
                 c1.setEmail(tfEmail.getText());
-                Cliente.setCpf(tfCPF.getText());
+                c1.setCpf(tfCPF.getText());
+                Cliente.setCpfGlobal(tfCPF.getText());
                 ClienteDAO cd1 = new ClienteDAO();
 
-                String[] partes = cbConta.getSelectedItem().toString().split(" ");
+                if (!cbConta.getSelectedItem().toString().equals("")) {
+                    System.out.println(cbConta.getSelectedItem().toString());
+                    String[] partes = cbConta.getSelectedItem().toString().split(" ");
 
-                if (cd1.inserirCliente(c1)) {
+                    if (cd1.inserirCliente(c1)) {
 
-                    if (partes[0].equals("Poupança")) {
-                        ContaPoupancaDAO cpd1 = new ContaPoupancaDAO();
-                        ContaPoupanca conta = cpd1.buscarContaPoupancaPorNumero(Integer.parseInt(partes[3]));
-                        conta.setCliente_cpf(tfCPF.getText());
-                        cpd1.atualizarContaPoupanca(Integer.parseInt(partes[3]), conta);
-                    } else if (partes[0].equals("Movimento")) {
-                        ContaMovimentoDAO cmd1 = new ContaMovimentoDAO();
-                        ContaMovimento conta = cmd1.buscarContaMovimentoPorNumero(Integer.parseInt(partes[3]));
-                        conta.setCliente_cpf(tfCPF.getText());
-                        cmd1.atulizarContaMovimento(Integer.parseInt(partes[3]), conta);
+                        if (partes[0].equals("Poupança")) {
+                            ContaPoupancaDAO cpd1 = new ContaPoupancaDAO();
+                            ContaPoupanca conta = cpd1.buscarContaPoupancaPorNumero(Integer.parseInt(partes[3]));
+                            conta.setCliente_cpf(tfCPF.getText());
+                            cpd1.atualizarContaPoupanca(Integer.parseInt(partes[3]), conta);
+                        } else if (partes[0].equals("Movimento")) {
+                            ContaMovimentoDAO cmd1 = new ContaMovimentoDAO();
+                            ContaMovimento conta = cmd1.buscarContaMovimentoPorNumero(Integer.parseInt(partes[3]));
+                            conta.setCliente_cpf(tfCPF.getText());
+                            cmd1.atulizarContaMovimento(Integer.parseInt(partes[3]), conta);
+                        }
+
+                        TelaEndereco te1 = new TelaEndereco();
+                        te1.setVisible(true);
+                        this.setVisible(false);
+                    } else {
+                        limpar();
+                        JOptionPane.showMessageDialog(null, "Cliente não pôde ser criado!");
                     }
-
-                    TelaEndereco te1 = new TelaEndereco();
-                    te1.setVisible(true);
-                    this.setVisible(false);
                 } else {
-                    limpar();
-                    JOptionPane.showMessageDialog(null, "Cliente não pôde ser criado!");
+                    JOptionPane.showConfirmDialog(null, "Não há contas disponíveis, crie uma!");
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Valores digitados são incorretos!");

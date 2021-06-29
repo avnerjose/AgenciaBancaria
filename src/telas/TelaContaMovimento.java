@@ -64,6 +64,7 @@ public class TelaContaMovimento extends javax.swing.JFrame {
         btnCadastrarCM.setBackground(new java.awt.Color(153, 0, 153));
         btnCadastrarCM.setForeground(new java.awt.Color(255, 255, 255));
         btnCadastrarCM.setText("CADASTRAR");
+        btnCadastrarCM.setFocusable(false);
         btnCadastrarCM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnCadastrarCMActionPerformed(evt);

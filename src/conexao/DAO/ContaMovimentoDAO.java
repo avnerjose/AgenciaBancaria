@@ -6,9 +6,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 public class ContaMovimentoDAO extends connectionDAO {
-    
+
     boolean sucesso = false;
-    
+
     public boolean inserirContaMovimento(ContaMovimento conta) {
         connectToDB();
         String sql = "INSERT INTO Conta_Movimento (numero, saldo, limite, Agencia_numero) values(?,?,?,?)";
@@ -31,14 +31,14 @@ public class ContaMovimentoDAO extends connectionDAO {
                 System.out.println("Erro: " + exc.getMessage());
             }
         }
-        
+
         return sucesso;
     }
-    
+
     public boolean atulizarContaMovimento(int numero, ContaMovimento conta) {
         connectToDB();
         String sql = "UPDATE Conta_Movimento SET saldo=?, limite=?, Cliente_cpf=? where numero=?";
-        
+
         try {
             pst = con.prepareStatement(sql);
             pst.setFloat(1, conta.getSaldo());
@@ -47,7 +47,7 @@ public class ContaMovimentoDAO extends connectionDAO {
             pst.setFloat(4, numero);
             pst.execute();
             sucesso = true;
-            
+
         } catch (SQLException ex) {
             System.out.println("Erro = " + ex.getMessage());
             sucesso = false;
@@ -61,17 +61,17 @@ public class ContaMovimentoDAO extends connectionDAO {
         }
         return sucesso;
     }
-    
+
     public boolean deletarContaMovimento(int numero) {
         connectToDB();
         String sql = "DELETE FROM Conta_Movimento where numero=?";
-        
+
         try {
             pst = con.prepareStatement(sql);
             pst.setInt(1, numero);
             pst.execute();
             sucesso = true;
-            
+
         } catch (SQLException ex) {
             System.out.println("Erro = " + ex.getMessage());
             sucesso = false;
@@ -85,25 +85,25 @@ public class ContaMovimentoDAO extends connectionDAO {
         }
         return sucesso;
     }
-    
+
     public ArrayList<Conta> buscarContasMovimento() {
         ArrayList<Conta> listaDeContasMovimento = new ArrayList<>();
-        
+
         connectToDB();
-        
+
         String sql = "SELECT * FROM Conta_Movimento";
-        
+
         try {
             st = con.createStatement();
             rs = st.executeQuery(sql);
             while (rs.next()) {
                 ContaMovimento contaAux = new ContaMovimento();
-                
+
                 contaAux.setNumero(rs.getInt("numero"));
                 contaAux.setSaldo(rs.getFloat("saldo"));
                 contaAux.setLimite(rs.getFloat("limite"));
                 contaAux.setCliente_cpf(rs.getString("Cliente_cpf"));
-                
+
                 listaDeContasMovimento.add(contaAux);
             }
         } catch (SQLException e) {
@@ -116,22 +116,22 @@ public class ContaMovimentoDAO extends connectionDAO {
                 System.out.println("Erro: " + e.getMessage());
             }
         }
-        
+
         return listaDeContasMovimento;
     }
-    
+
     public ContaMovimento buscarContaMovimentoPorNumero(int numero) {
         ContaMovimento contaAux = null;
-        
+
         connectToDB();
-        
+
         String sql = "SELECT * FROM Conta_Movimento WHERE numero=?";
-        
+
         try {
             pst = con.prepareStatement(sql);
             pst.setInt(1, numero);
             rs = pst.executeQuery();
-            
+
             while (rs.next()) {
                 String aux = rs.getString("numero");
                 if (aux.isEmpty()) {
@@ -153,8 +153,8 @@ public class ContaMovimentoDAO extends connectionDAO {
                 System.out.println("Erro: " + e.getMessage());
             }
         }
-        
+
         return contaAux;
     }
-    
+
 }
