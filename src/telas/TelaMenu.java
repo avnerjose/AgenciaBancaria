@@ -32,6 +32,7 @@ public class TelaMenu extends javax.swing.JFrame {
         bConta = new javax.swing.JButton();
         bCliente = new javax.swing.JButton();
         bEmprestimo = new javax.swing.JButton();
+        bEmprestimo1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -71,6 +72,17 @@ public class TelaMenu extends javax.swing.JFrame {
             }
         });
 
+        bEmprestimo1.setBackground(new java.awt.Color(153, 0, 153));
+        bEmprestimo1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        bEmprestimo1.setForeground(new java.awt.Color(255, 255, 255));
+        bEmprestimo1.setText("Editar Cliente Existente");
+        bEmprestimo1.setFocusable(false);
+        bEmprestimo1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                bEmprestimo1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -78,6 +90,7 @@ public class TelaMenu extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(bEmprestimo1, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(bConta, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -85,14 +98,16 @@ public class TelaMenu extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(99, Short.MAX_VALUE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(47, 47, 47)
                 .addComponent(bConta, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
                 .addComponent(bCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
                 .addComponent(bEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(94, 94, 94))
+                .addGap(31, 31, 31)
+                .addComponent(bEmprestimo1, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(60, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -129,6 +144,12 @@ public class TelaMenu extends javax.swing.JFrame {
         t1.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_bEmprestimoActionPerformed
+
+    private void bEmprestimo1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bEmprestimo1ActionPerformed
+        TelaEdicaoCliente t1 = new TelaEdicaoCliente();
+        t1.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_bEmprestimo1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -169,6 +190,7 @@ public class TelaMenu extends javax.swing.JFrame {
     private javax.swing.JButton bCliente;
     private javax.swing.JButton bConta;
     private javax.swing.JButton bEmprestimo;
+    private javax.swing.JButton bEmprestimo1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
