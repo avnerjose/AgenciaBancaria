@@ -370,13 +370,27 @@ public class TelaEdicaoCliente extends javax.swing.JFrame {
                 ClienteDAO cd1 = new ClienteDAO();
                 String clienteCPF = cbClientes.getSelectedItem().toString().split(" ")[4];
 
-                try {
-                    String[] partes = cbConta.getSelectedItem().toString().split(" ");
-                } catch (Exception e) {
-                    System.out.println("Nenhuma conta disponível!");
-                }
-
                 if (cd1.atualizarCliente(clienteCPF, c1)) {
+
+                    try {
+                        String[] partes = cbConta.getSelectedItem().toString().split(" ");
+
+                        if (partes[0].equals("Poupança")) {
+                            ContaPoupancaDAO cpd1 = new ContaPoupancaDAO();
+                            ContaPoupanca conta = cpd1.buscarContaPoupancaPorNumero(Integer.parseInt(partes[3]));
+                            conta.setCliente_cpf(tfCPF.getText());
+                            cpd1.atualizarContaPoupanca(Integer.parseInt(partes[3]), conta);
+                        } else if (partes[0].equals("Movimento")) {
+                            ContaMovimentoDAO cmd1 = new ContaMovimentoDAO();
+                            ContaMovimento conta = cmd1.buscarContaMovimentoPorNumero(Integer.parseInt(partes[3]));
+                            conta.setCliente_cpf(tfCPF.getText());
+                            cmd1.atulizarContaMovimento(Integer.parseInt(partes[3]), conta);
+                        }
+
+                    } catch (Exception e) {
+                        System.out.println("Nenhuma conta disponível!");
+                    }
+
                     JOptionPane.showMessageDialog(null, "Cliente alterado com sucesso!");
                     TelaMenu tm = new TelaMenu();
                     tm.setVisible(true);
