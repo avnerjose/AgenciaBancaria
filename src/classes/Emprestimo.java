@@ -12,8 +12,6 @@ public class Emprestimo {
         this.numero = numero;
     }
     
-    
-    
     public float getValor() {
         return valor;
     }
