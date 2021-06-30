@@ -9,9 +9,11 @@ import classes.Cliente;
 import classes.Conta;
 import classes.ContaMovimento;
 import classes.ContaPoupanca;
+import classes.Emprestimo;
 import conexao.DAO.ClienteDAO;
 import conexao.DAO.ContaMovimentoDAO;
 import conexao.DAO.ContaPoupancaDAO;
+import conexao.DAO.EmprestimoDAO;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -28,6 +30,7 @@ public class TelaCliente extends javax.swing.JFrame {
         initComponents();
         setLocationRelativeTo(null);
         comboBoxLista();
+        comboBoxEmprestimo();
     }
 
     /**
@@ -49,6 +52,8 @@ public class TelaCliente extends javax.swing.JFrame {
         bCadastrar = new javax.swing.JButton();
         cbConta = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
+        cbEmprestimo = new javax.swing.JComboBox<>();
+        jLabel5 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -56,10 +61,10 @@ public class TelaCliente extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(102, 0, 102), 2, true), "Cadastro de Clientes", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Segoe UI", 1, 18), new java.awt.Color(102, 0, 102))); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel1.setText("Conta");
+        jLabel1.setText("Conta:");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel2.setText("Nome");
+        jLabel2.setText("Nome:");
 
         tfNome.setBackground(new java.awt.Color(255, 255, 255));
         tfNome.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -82,7 +87,7 @@ public class TelaCliente extends javax.swing.JFrame {
         });
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel3.setText("CPF");
+        jLabel3.setText("CPF:");
 
         tfEmail.setBackground(new java.awt.Color(255, 255, 255));
         tfEmail.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
@@ -112,32 +117,45 @@ public class TelaCliente extends javax.swing.JFrame {
         });
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
-        jLabel4.setText("Email");
+        jLabel4.setText("Email:");
+
+        cbEmprestimo.setBackground(new java.awt.Color(255, 255, 255));
+        cbEmprestimo.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        cbEmprestimo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbEmprestimoActionPerformed(evt);
+            }
+        });
+
+        jLabel5.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
+        jLabel5.setText("Emp.:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(38, Short.MAX_VALUE)
+                .addContainerGap(33, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING))
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel4)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel5))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(cbConta, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(bCadastrar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
-                    .addComponent(tfEmail)
-                    .addComponent(tfCPF)
-                    .addComponent(tfNome))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(cbEmprestimo, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cbConta, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(bCadastrar, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
+                    .addComponent(tfEmail, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfCPF, javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(tfNome, javax.swing.GroupLayout.Alignment.LEADING))
                 .addGap(43, 43, 43))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(89, Short.MAX_VALUE)
+                .addGap(39, 39, 39)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(tfNome, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -153,7 +171,11 @@ public class TelaCliente extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cbConta, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(21, 21, 21)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbEmprestimo, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
                 .addComponent(bCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(86, 86, 86))
         );
@@ -191,6 +213,10 @@ public class TelaCliente extends javax.swing.JFrame {
     private void cbContaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbContaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbContaActionPerformed
+
+    private void cbEmprestimoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbEmprestimoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbEmprestimoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -230,10 +256,12 @@ public class TelaCliente extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton bCadastrar;
     private javax.swing.JComboBox<String> cbConta;
+    private javax.swing.JComboBox<String> cbEmprestimo;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JFormattedTextField tfCPF;
     private javax.swing.JTextField tfEmail;
@@ -252,21 +280,26 @@ public class TelaCliente extends javax.swing.JFrame {
 
                 if (!cbConta.getSelectedItem().toString().equals("")) {
                     System.out.println(cbConta.getSelectedItem().toString());
-                    String[] partes = cbConta.getSelectedItem().toString().split(" ");
+                    String[] partesConta = cbConta.getSelectedItem().toString().split(" ");
+                    String[] partesEmprestimo = cbEmprestimo.getSelectedItem().toString().split(" ");
 
                     if (cd1.inserirCliente(c1)) {
 
-                        if (partes[0].equals("Poupança")) {
+                        if (partesConta[0].equals("Poupança")) {
                             ContaPoupancaDAO cpd1 = new ContaPoupancaDAO();
-                            ContaPoupanca conta = cpd1.buscarContaPoupancaPorNumero(Integer.parseInt(partes[3]));
+                            ContaPoupanca conta = cpd1.buscarContaPoupancaPorNumero(Integer.parseInt(partesConta[3]));
                             conta.setCliente_cpf(tfCPF.getText());
-                            cpd1.atualizarContaPoupanca(Integer.parseInt(partes[3]), conta);
-                        } else if (partes[0].equals("Movimento")) {
+                            cpd1.atualizarContaPoupanca(Integer.parseInt(partesConta[3]), conta);
+                        } else if (partesConta[0].equals("Movimento")) {
                             ContaMovimentoDAO cmd1 = new ContaMovimentoDAO();
-                            ContaMovimento conta = cmd1.buscarContaMovimentoPorNumero(Integer.parseInt(partes[3]));
+                            ContaMovimento conta = cmd1.buscarContaMovimentoPorNumero(Integer.parseInt(partesConta[3]));
                             conta.setCliente_cpf(tfCPF.getText());
-                            cmd1.atulizarContaMovimento(Integer.parseInt(partes[3]), conta);
+                            cmd1.atulizarContaMovimento(Integer.parseInt(partesConta[3]), conta);
                         }
+
+                        EmprestimoDAO ed1 = new EmprestimoDAO();
+                        int empNumero = Integer.parseInt(partesEmprestimo[2]);
+                        ed1.emprestimoHasCliente(empNumero, c1.getCpf());
 
                         TelaEndereco te1 = new TelaEndereco();
                         te1.setVisible(true);
@@ -311,6 +344,15 @@ public class TelaCliente extends javax.swing.JFrame {
                     cbConta.addItem("Movimento - N° " + Integer.toString(aux.getNumero()) + " - Limite: " + Float.toString(aux.getLimite()));
                 }
             }
+        }
+    }
+
+    public void comboBoxEmprestimo() {
+        EmprestimoDAO ed1 = new EmprestimoDAO();
+        ArrayList<Emprestimo> emprestimos = ed1.buscarEmprestimoSemFiltro();
+
+        for (Emprestimo emprestimo : emprestimos) {
+            cbEmprestimo.addItem("Empréstimo N° " + emprestimo.getNumero() + " - Valor: R$ " + emprestimo.getValor());
         }
     }
 

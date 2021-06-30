@@ -9,6 +9,7 @@ import classes.Cliente;
 import classes.Emprestimo;
 import conexao.DAO.ClienteDAO;
 import conexao.DAO.EmprestimoDAO;
+import java.awt.HeadlessException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
@@ -24,7 +25,6 @@ public class TelaEmprestimo extends javax.swing.JFrame {
     public TelaEmprestimo() {
         initComponents();
         setLocationRelativeTo(null);
-        comboBoxLista();
     }
 
     /**
@@ -40,18 +40,16 @@ public class TelaEmprestimo extends javax.swing.JFrame {
         btCadastrar = new javax.swing.JButton();
         tfValor = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        cbCPF = new javax.swing.JComboBox<>();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(153, 0, 153), 2, true), "Cadastro empréstimo", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Dialog", 1, 18), new java.awt.Color(153, 0, 153))); // NOI18N
 
-
         btCadastrar.setBackground(new java.awt.Color(153, 0, 153));
         btCadastrar.setForeground(new java.awt.Color(255, 255, 255));
         btCadastrar.setText("CADASTRAR");
+        btCadastrar.setFocusable(false);
         btCadastrar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btCadastrarActionPerformed(evt);
@@ -69,46 +67,28 @@ public class TelaEmprestimo extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
         jLabel2.setText("Valor:");
 
-        jLabel3.setFont(new java.awt.Font("Dialog", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel3.setText("CPF");
-
-        cbCPF.setBackground(new java.awt.Color(255, 255, 255));
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(36, 36, 36)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(41, 41, 41)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3))
+                        .addComponent(jLabel2)
                         .addGap(35, 35, 35)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tfValor, javax.swing.GroupLayout.DEFAULT_SIZE, 450, Short.MAX_VALUE)
-                            .addComponent(cbCPF, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(118, 118, 118)
-                        .addComponent(btCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(34, Short.MAX_VALUE))
+                        .addComponent(tfValor, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(btCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 450, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(98, 98, 98)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbCPF, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGap(140, 140, 140)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(tfValor)
-                        .addGap(1, 1, 1))
+                    .addComponent(tfValor)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(42, 42, 42)
+                .addGap(53, 53, 53)
                 .addComponent(btCadastrar, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(206, 206, 206))
         );
@@ -187,51 +167,37 @@ public class TelaEmprestimo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btCadastrar;
-    private javax.swing.JComboBox<String> cbCPF;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField tfValor;
     // End of variables declaration//GEN-END:variables
 
     public void cadastrar() {
-       Emprestimo e1 = new Emprestimo();
-       if(!tfValor.getText().equals("")) {
-           try {
-               e1.setValor(Float.parseFloat(tfValor.getText()));
-               EmprestimoDAO ed1 = new EmprestimoDAO();
-               
-               if(ed1.inserirEmprestimo(e1)) {
-                   JOptionPane.showMessageDialog(null, "Emprestimo cadastrado com sucesso!");
+        Emprestimo e1 = new Emprestimo();
+        if (!tfValor.getText().equals("")) {
+            try {
+                e1.setValor(Float.parseFloat(tfValor.getText()));
+                EmprestimoDAO ed1 = new EmprestimoDAO();
+
+                if (ed1.inserirEmprestimo(e1)) {
+                    JOptionPane.showMessageDialog(null, "Emprestimo cadastrado com sucesso!");
                     TelaMenu menu = new TelaMenu();
                     menu.setVisible(true);
                     this.setVisible(false);
-                    String[] partes = cbCPF.getSelectedItem().toString().split(" ");
-                    ed1.emprestimoHasCliente(partes[2]);
-               } else {
-                   limpar();
-                   JOptionPane.showMessageDialog(null, "Emprestimo não pode ser inserido");
-               }
-           } catch(Exception e) {
-               JOptionPane.showMessageDialog(null, "Valores digitados são incorretos!");
-           }
-       } else {
-           JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
-       }
+                } else {
+                    limpar();
+                    JOptionPane.showMessageDialog(null, "Emprestimo não pode ser inserido");
+                }
+            } catch (HeadlessException | NumberFormatException e) {
+                JOptionPane.showMessageDialog(null, "Valores digitados são incorretos!");
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Preencha todos os campos!");
+        }
     }
-    
+
     public void limpar() {
         tfValor.setText("");
     }
-    
-    public void comboBoxLista() {
-        ClienteDAO cd1 = new ClienteDAO();
-        ArrayList<Cliente> clientes = new ArrayList();
-        
-        clientes = cd1.buscarClienteSemFiltro();
-        
-        for (Cliente cliente : clientes) {
-            cbCPF.addItem(cliente.getNome() + " - " + cliente.getCpf());
-        }
-    }
+
 }
