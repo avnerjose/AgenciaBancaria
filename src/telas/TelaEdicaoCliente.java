@@ -350,13 +350,17 @@ public class TelaEdicaoCliente extends javax.swing.JFrame {
 
     public void carregaDadosCliente() {
         ClienteDAO cd1 = new ClienteDAO();
-        String clienteCPF = cbClientes.getSelectedItem().toString().split(" ")[4];
+        String[] partes = cbClientes.getSelectedItem().toString().split(" ");
+        String clienteCPF = partes[partes.length - 1];
+        try {
+            Cliente c1 = cd1.buscarClientePorCpf(clienteCPF);
 
-        Cliente c1 = cd1.buscarClientePorCpf(clienteCPF);
-
-        tfNome.setText(c1.getNome());
-        tfEmail.setText(c1.getEmail());
-        tfCPF.setText(c1.getCpf());
+            tfNome.setText(c1.getNome());
+            tfEmail.setText(c1.getEmail());
+            tfCPF.setText(c1.getCpf());
+        } catch (Exception e) {
+            System.out.println("Deu ruim!");
+        }
     }
 
     public void alteraDadosCliente() {
