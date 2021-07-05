@@ -350,7 +350,7 @@ public class TelaCliente extends javax.swing.JFrame {
     public void comboBoxEmprestimo() {
         EmprestimoDAO ed1 = new EmprestimoDAO();
         ArrayList<Emprestimo> emprestimos = ed1.buscarEmprestimoSemFiltro();
-
+          
         for (Emprestimo emprestimo : emprestimos) {
             cbEmprestimo.addItem("Empréstimo N° " + emprestimo.getNumero() + " - Valor: R$ " + emprestimo.getValor());
         }
